@@ -13,15 +13,26 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.View
 
 
 
-    static String[] fakeData = new String[] {
-            "One",
-            "Two"
+    static String[] itemTitles = new String[] {
+            "Dummy",
+            "Data"
+    };
+    static String[] itemPrices = new String[] {
+            "Dummy",
+            "Data"
+    };
+
+    static String[] itemVats = new String[] {
+            "Dummy",
+            "Data"
     };
 
     int currentPosition;
 
-   public CartItemsAdapter(String[] items){
-       fakeData = items;
+   public CartItemsAdapter(String[] itemTitles, String[] itemPrices, String[] itemVat){
+       CartItemsAdapter.itemTitles = itemTitles;
+       CartItemsAdapter.itemPrices = itemPrices;
+       CartItemsAdapter.itemVats = itemVat;
    }
 
 
@@ -40,7 +51,9 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.View
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.titleView.setText(fakeData[position]);
+        holder.titleView.setText(itemTitles[position]);
+        holder.priceView.setText("Unit Price: " + itemPrices[position]);
+        holder.vatView.setText("VAT: " + itemVats[position]);
         holder.mRemoveButton.setFocusable(true);
         holder.mRemoveButton.setFocusableInTouchMode(true);
 
@@ -49,20 +62,22 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.View
 
     @Override
     public int getItemCount() {
-        return fakeData.length;
+        return itemTitles.length;
     }
 
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
-        TextView titleView;
+        TextView titleView, priceView, vatView;
         Button mRemoveButton;
         int pos;
         public ViewHolder(CardView card) {
             super(card);
             cardView = card;
             titleView = (TextView)card.findViewById(R.id.item_title);
+            priceView = card.findViewById(R.id.txtUnitPrice);
+            vatView = card.findViewById(R.id.txtVat);
             mRemoveButton = card.findViewById(R.id.removeItem);
             pos = getAdapterPosition();
 
