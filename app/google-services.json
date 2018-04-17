@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "423056911129",
+    "firebase_url": "https://taara-e06d3.firebaseio.com",
+    "project_id": "taara-e06d3",
+    "storage_bucket": "taara-e06d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423056911129:android:bf971592b6d2a1a7",
+        "android_client_info": {
+          "package_name": "ke.co.taara.taara"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423056911129-v004poa8fefpfh03p06mi95groa7uof8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtrJWDpW-ch1dIJMcH1Jv8TXaBy3N-woc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
