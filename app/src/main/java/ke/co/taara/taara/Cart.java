@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -23,7 +24,8 @@ public class Cart extends AppCompatActivity  implements AddItemFragment.AddItemL
     CartItemsAdapter cartItemsAdapter;
 
 
-
+    TextView textTotal;
+    String totalStr;
    public static String addedItem;
     RecyclerView r;
     List<String> titlesList;
@@ -43,6 +45,9 @@ public class Cart extends AppCompatActivity  implements AddItemFragment.AddItemL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         mToolbar = findViewById(R.id.CartToolbar);
+        textTotal = findViewById(R.id.txtTotalCart);
+        totalStr = "0";
+        textTotal.setText(totalStr);
         itemTitles = getResources().getStringArray(R.array.titles);
         itemPrices = getResources().getStringArray(R.array.prices);
         itemVat = getResources().getStringArray(R.array.vat);
@@ -101,8 +106,12 @@ public class Cart extends AppCompatActivity  implements AddItemFragment.AddItemL
             titlesList.add(itemTitles[index]);
             pricesList.add(itemPrices[index]);
             vatList.add(itemVat[index]);
-            cartItemsAdapter = new CartItemsAdapter(titlesList.toArray(titles), pricesList.toArray(prices), vatList.toArray(itemVat));
+            cartItemsAdapter = new CartItemsAdapter(titlesList.toArray(titles), pricesList.toArray(prices), vatList.toArray(vats));
             r.setAdapter(cartItemsAdapter);
+           int currentAmount = Integer.parseInt(textTotal.getText().toString());
+           currentAmount += Integer.parseInt(itemPrices[index]);
+           textTotal.setText(String.valueOf(currentAmount));
+
         }else{
             Toast.makeText(getApplicationContext(), "No item with entered id.Try id between 0 and " + String.valueOf(((itemTitles.length) - 1)), Toast.LENGTH_LONG ).show();
         }
@@ -115,8 +124,19 @@ public class Cart extends AppCompatActivity  implements AddItemFragment.AddItemL
     public void removeItem(View view){
         view.requestFocus();
         titlesList.remove(r.getChildAdapterPosition(r.getFocusedChild()));
+        pricesList.remove(r.getChildAdapterPosition(r.getFocusedChild()));
+        vatList.remove(r.getChildAdapterPosition(r.getFocusedChild()));
+        int currentAmount = Integer.parseInt(textTotal.getText().toString());
+        TextView tosubtract = r.getFocusedChild().findViewById(R.id.txtUnitPrice);
+        currentAmount -= Integer.parseInt(tosubtract.getText().toString());
+        textTotal.setText(String.valueOf(currentAmount));
         cartItemsAdapter = new CartItemsAdapter(titlesList.toArray(titles), pricesList.toArray(prices), vatList.toArray(vats));
         r.setAdapter(cartItemsAdapter);
+    }
+
+    public void checkOut(View view){
+        int amountToCheckout = Integer.parseInt(textTotal.getText().toString());
+
     }
 
 

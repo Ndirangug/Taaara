@@ -37,7 +37,7 @@
     <string name="remove">REMOVE</string>
     <string name="quantuty">quantuty</string>
     <string name="todo">TODO</string>
-    <string name="total">Total</string>
+    <string name="total">Total (kshs)</string>
     <string name="kshs_420">Kshs 420</string>
     <string name="checkout">Checkout</string>
     <string name="taara_credits">TAARA CREDITS</string>
@@ -46,4 +46,6 @@
     <string name="add_item">ADD ITEM</string>
     <string name="item_id">Item Id</string>
     <string name="add_to_cart">ADD TO CART</string>
+    <string name="_20">20</string>
+    <string name="vat">VAT:</string>
 </resources>

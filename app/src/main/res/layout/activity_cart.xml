@@ -86,7 +86,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10sp"
-            android:text="@string/kshs_420" />
+            android:text="@string/kshs_420"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/txtCheckout"
@@ -98,22 +100,12 @@
             android:textColor="@color/textDark" />
 
         <Button
-            android:id="@+id/btnCredits"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/taara_credits" />
-
-        <Button
             android:id="@+id/btnMpesa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="checkOut"
             android:text="@string/mpesa" />
 
-        <Button
-            android:id="@+id/btnCreditCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/credit_card" />
     </LinearLayout>
 
     <Button

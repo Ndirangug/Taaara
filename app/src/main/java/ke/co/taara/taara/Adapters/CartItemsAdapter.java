@@ -52,8 +52,8 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.View
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.titleView.setText(itemTitles[position]);
-        holder.priceView.setText("Unit Price: " + itemPrices[position]);
-        holder.vatView.setText("VAT: " + itemVats[position]);
+        holder.priceView.setText( itemPrices[position]);
+        holder.vatView.setText(itemVats[position]);
         holder.mRemoveButton.setFocusable(true);
         holder.mRemoveButton.setFocusableInTouchMode(true);
 
