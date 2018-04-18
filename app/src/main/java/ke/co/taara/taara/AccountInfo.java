@@ -2,18 +2,26 @@ package ke.co.taara.taara;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import ke.co.taara.taara.Database.TaaraDbContract;
 import ke.co.taara.taara.Database.TaaraDbHelper;
@@ -34,16 +42,20 @@ public class AccountInfo extends AppCompatActivity {
     String fullname;
     TextView mPhone;
     String phoneFromDb;
-
-
+    GoogleApiClient mGoogleApiClient;
+    Location mLastLocation;
+    double latitude;
+    double longitude;
     private FirebaseAuth mAuth;
+    private String storename;
+    private TextView textView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_info);
-        mCheckInDialog = new CheckInFragment();
+        textView = findViewById(R.id.storeName);
 
         startShopping = findViewById(R.id.txtStartShopping);
         nameFromDb = findViewById(R.id.txtName);
@@ -67,10 +79,10 @@ public class AccountInfo extends AppCompatActivity {
                 TaaraDbContract.TaaraUsers.COLUMN_NAME_SECOND_NAME,
                 TaaraDbContract.TaaraUsers.COLUMN_NAME_PHONE
 
-    };
+        };
 
-       String selection = TaaraDbContract.TaaraUsers.COLUMN_NAME_EMAIL + "=?";
-       String[] selectionArgs = {mEmail};
+        String selection = TaaraDbContract.TaaraUsers.COLUMN_NAME_EMAIL + "=?";
+        String[] selectionArgs = {mEmail};
 
         Cursor c = db.query(
                 TaaraDbContract.TaaraUsers.TABLE_NAME,          // The table to query
@@ -89,6 +101,63 @@ public class AccountInfo extends AppCompatActivity {
         nameFromDb.setText(fullname);
         phoneFromDb = c.getString(c.getColumnIndexOrThrow(TaaraDbContract.TaaraUsers.COLUMN_NAME_PHONE));
         mPhone.setText(phoneFromDb);
+
+
+        // Create an instance of GoogleAPIClient.
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+                        @Override
+                        public void onConnected(@Nullable Bundle bundle) {
+                            if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                                // TODO: Consider calling
+                                //    ActivityCompat#requestPermissions
+                                // here to request the missing permissions, and then overriding
+                                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                //                                          int[] grantResults)
+                                // to handle the case where the user grants the permission. See the documentation
+                                // for ActivityCompat#requestPermissions for more details.
+                                Toast.makeText(getApplicationContext(), "UNABLE TO ACCESS LOCATION.ENABLE LOCATION ACCESSS IN DEVICE SETTINGS TO ENJOY ALL FEATURES", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+                            if (mLastLocation != null) {
+                                latitude = mLastLocation.getLatitude();
+                                longitude = mLastLocation.getLongitude();
+
+                            }
+
+                            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, new LocationRequest(), new LocationListener() {
+                                @Override
+                                public void onLocationChanged(Location location) {
+                                    latitude = location.getLatitude();
+                                    longitude = location.getLongitude();
+
+                                }
+                            });
+
+
+
+                        }
+
+                        @Override
+                        public void onConnectionSuspended(int i) {
+
+                        }
+                    })
+                    .addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
+                        @Override
+                        public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+                        }
+                    })
+                    .addApi(LocationServices.API)
+                    .build();
+        }
+
+
+
     }
 
     public void logOut(View view){
@@ -98,9 +167,43 @@ public class AccountInfo extends AppCompatActivity {
     }
 
     public void startShopping(android.view.View view){
+        mCheckInDialog = new CheckInFragment();
         mCheckInDialog.show(getSupportFragmentManager(), "CHECK_IN_CONFIRM");
+        Bundle bundle = new Bundle();
+        bundle.putDouble("LONGITUDE", longitude);
+        bundle.putDouble("LATITUDE", latitude);
+        mCheckInDialog.setArguments(bundle);
     //
 
     }
+
+
+    public void editProfile(View view){
+        Intent intent = new Intent(getApplicationContext(), EditProfile.class);
+        startActivity(intent);
+    }
+
+    protected void onStart() {
+
+        mGoogleApiClient.connect();
+
+         super.onStart();
+    }
+
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        if (Double.valueOf(latitude) == null) {
+            Toast.makeText(getApplicationContext(), "ENABLE LOCATION IN DEVICE SETTINGS", Toast.LENGTH_LONG).show();
+        }
+
+        super.onResume();
+
+    //TODO:status bar back button imolement finish();
+}
 
 }

@@ -15,13 +15,13 @@
         android:weightSum="7">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="5"
         android:background="@color/colorPrimaryDark"
         android:gravity="top|center_horizontal"
-        android:orientation="vertical"
-        android:id="@+id/relativeLayout2">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView"
@@ -63,22 +63,23 @@
             android:text="@string/todo"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/txtPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-70dp"
+            android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="@string/todo"
             android:textColor="@android:color/white"
             android:textSize="15sp"
-            app:layout_constraintTop_toBottomOf="@id/txtName"
-            android:layout_marginTop="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtName" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -96,6 +97,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="54dp"
             android:contentDescription="@string/edit_profile"
+            android:onClick="editProfile"
             app:srcCompat="@drawable/edit" />
 
         <TextView
