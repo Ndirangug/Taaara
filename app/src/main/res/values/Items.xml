@@ -27,15 +27,15 @@
     </string-array>
 
     <string-array name="vat">
-        <item>16</item>
-        <item>16</item>
-        <item>16</item>
+        <item>16%</item>
+        <item>16%</item>
+        <item>16%</item>
         <item>0</item>
-        <item>16</item>
+        <item>16%</item>
         <item>0</item>
-        <item>16</item>
-        <item>16</item>
+        <item>16%</item>
+        <item>16%</item>
         <item>0</item>
-        <item>16</item>
+        <item>16%</item>
     </string-array>
 </resources>

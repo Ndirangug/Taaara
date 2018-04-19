@@ -2,16 +2,27 @@ package ke.co.taara.taara.Adapters;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.method.KeyListener;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ke.co.taara.taara.R;
 
 public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.ViewHolder>  {
+    String quantityBeforeChange;
+    String textAfterChange;
 
-
+    List<String> changes;
 
     static String[] itemTitles = new String[] {
             "Dummy",
@@ -51,6 +62,7 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.View
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+        changes = new ArrayList<>();
         holder.titleView.setText(itemTitles[position]);
         holder.priceView.setText( itemPrices[position]);
         holder.vatView.setText(itemVats[position]);
@@ -71,6 +83,7 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.View
         CardView cardView;
         TextView titleView, priceView, vatView;
         Button mRemoveButton;
+        TextView quantity;
         int pos;
         public ViewHolder(CardView card) {
             super(card);
@@ -82,8 +95,11 @@ public class CartItemsAdapter extends RecyclerView.Adapter<CartItemsAdapter.View
             pos = getAdapterPosition();
 
 
+
         }
     }
+
+
 
 
 }

@@ -35,7 +35,7 @@
     <string name="vat_16">Vat: 16%</string>
     <string name="colgate_herbal_200ml">COLGATE HERBAL 200ML</string>
     <string name="remove">REMOVE</string>
-    <string name="quantuty">quantuty</string>
+    <string name="quantuty">quantity</string>
     <string name="todo">TODO</string>
     <string name="total">Total (kshs)</string>
     <string name="kshs_420">Kshs 420</string>
@@ -50,11 +50,16 @@
     <string name="vat">VAT:</string>
     <string name="user_icon">user Icon</string>
     <string name="phone_no">Phone no</string>
-    <string name="for_now_only_your_names_and_phone_can_be_dited_locally_the_rest_will_be_made_available_soon_kindly_bear_with_us">For now, only your names and phone can be dited locally.The rest will be made available soon. Kindly bear with us..</string>
+    <string name="for_now_only_your_names_and_phone_can_be_dited_locally_the_rest_will_be_made_available_soon_kindly_bear_with_us">For now, only your names and phone can be edited locally.The rest will be made available soon. Kindly bear with us..</string>
     <string name="save_changes">SAVE CHANGES</string>
     <string name="service_not_available">service not available</string>
     <string name="invalid_lat_long_used">invalid lat long used</string>
     <string name="no_address_found">no addresses found</string>
     <string name="address_found">address found</string>
     <string name="go_on">GO ON ANYWAY</string>
+    <string name="confirm_payment_of_kshs">Confirm Payment of kshs</string>
+    <string name="_130000">130000</string>
+    <string name="kshs">Kshs  </string>
+    <string name="_16">16%</string>
+    <string name="unit_price">Unit Price:</string>
 </resources>

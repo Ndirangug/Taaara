@@ -1,5 +1,6 @@
 package ke.co.taara.taara;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -16,14 +17,14 @@ import java.util.List;
 
 import ke.co.taara.taara.Adapters.CartItemsAdapter;
 import ke.co.taara.taara.Fragments.AddItemFragment;
+import ke.co.taara.taara.Fragments.ConfirmPayment;
 
 public class Cart extends AppCompatActivity  implements AddItemFragment.AddItemListener{
 
     android.support.v7.widget.Toolbar mToolbar;
     AddItemFragment addItemDialog;
     CartItemsAdapter cartItemsAdapter;
-
-
+    String  quantity;
     TextView textTotal;
     String totalStr;
    public static String addedItem;
@@ -74,6 +75,8 @@ public class Cart extends AppCompatActivity  implements AddItemFragment.AddItemL
         addItemDialog.show(getSupportFragmentManager(), "ADD_ITEM");
 
     }
+
+
 
     public interface AddItemListener{
         void addItemClicked(String itemId);
@@ -135,7 +138,13 @@ public class Cart extends AppCompatActivity  implements AddItemFragment.AddItemL
     }
 
     public void checkOut(View view){
-        int amountToCheckout = Integer.parseInt(textTotal.getText().toString());
+        double amountToCheckout = Integer.parseInt(textTotal.getText().toString());
+       ConfirmPayment confirmPaymentDialog = new ConfirmPayment();
+       Bundle paymentAmount = new Bundle();
+       paymentAmount.putDouble("PAYMENT", amountToCheckout);
+       confirmPaymentDialog.setArguments(paymentAmount);
+       confirmPaymentDialog.show(getSupportFragmentManager(), "CONFIRM_PAYMENT");
+
 
     }
 
