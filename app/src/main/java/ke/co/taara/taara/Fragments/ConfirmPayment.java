@@ -20,7 +20,6 @@ public class ConfirmPayment extends AppCompatDialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Intent intent = getActivity().getIntent();
         paymentAmount = String.valueOf(getArguments().getDouble("PAYMENT"));
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();

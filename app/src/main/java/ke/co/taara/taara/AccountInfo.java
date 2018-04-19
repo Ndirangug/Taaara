@@ -12,6 +12,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +44,7 @@ public class AccountInfo extends AppCompatActivity {
     String secondName;
     String fullname;
     TextView mPhone;
+    TextView txtEmail;
     String phoneFromDb;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
@@ -49,6 +53,7 @@ public class AccountInfo extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String storename;
     private TextView textView;
+
 
 
     @Override
@@ -63,6 +68,7 @@ public class AccountInfo extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("SESSION", 0);
         username = sharedPreferences.getString("USERNAME", "default");
         mPhone = findViewById(R.id.txtPhone);
+        txtEmail = findViewById(R.id.txtEmail);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -101,6 +107,7 @@ public class AccountInfo extends AppCompatActivity {
         nameFromDb.setText(fullname);
         phoneFromDb = c.getString(c.getColumnIndexOrThrow(TaaraDbContract.TaaraUsers.COLUMN_NAME_PHONE));
         mPhone.setText(phoneFromDb);
+        txtEmail.setText(mEmail);
 
 
         // Create an instance of GoogleAPIClient.
@@ -203,7 +210,13 @@ public class AccountInfo extends AppCompatActivity {
 
         super.onResume();
 
-    //TODO:status bar back button imolement finish();
+
 }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+        Log.i("BACK", "pressed");
+    }
 }

@@ -18,7 +18,7 @@
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
+        android:layout_weight="3"
         android:background="@color/colorPrimaryDark"
         android:gravity="top|center_horizontal"
         android:orientation="vertical">
@@ -33,13 +33,14 @@
             android:textColor="@android:color/background_light"
             android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/imageView2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/btnLogOut"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
+            android:layout_width="40dp"
+            android:layout_height="42dp"
             android:clickable="true"
             android:contentDescription="@string/log_out_button"
             android:focusable="true"
@@ -47,7 +48,7 @@
             android:minWidth="100dp"
             android:onClick="logOut"
             android:padding="8dp"
-            android:src="@drawable/padlock"
+            android:src="@drawable/unnamed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@id/textView"
@@ -58,17 +59,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-70dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="50dp"
             android:gravity="center"
             android:text="@string/todo"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/imageView2" />
 
         <TextView
-            android:id="@+id/txtPhone"
+            android:id="@+id/txtEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="-70dp"
@@ -81,13 +82,38 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtName" />
 
+        <TextView
+            android:id="@+id/txtPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-100dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/todo"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtEmail" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="124dp"
+            android:contentDescription="@string/profile_pic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView"
+            app:srcCompat="@drawable/user" />
+
     </android.support.constraint.ConstraintLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2">
+        android:layout_weight="4">
 
         <ImageView
             android:id="@+id/btnEditProfile"
@@ -120,9 +146,9 @@
             android:layout_marginEnd="54dp"
             android:clickable="true"
             android:contentDescription="@string/start_shopping"
+            android:focusable="true"
             android:onClick="startShopping"
-            app:srcCompat="@drawable/begin_shopping"
-            android:focusable="true" />
+            app:srcCompat="@drawable/begin_shopping" />
 
         <TextView
             android:id="@+id/txtStartShopping"

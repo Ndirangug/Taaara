@@ -1,0 +1,6 @@
+﻿Below are keys you can use to access the API products associated with this application (Taara). The actual keys need to be approved and approved for an API product to be capable of accessing any of the URIs defined in the API product.
+
+Consumer Key	0SKHgBn66azzyz5Y22ZufBhP6m5JwmQT
+Consumer Secret	GUm27XVgi697SUfE
+Key Issued	Wed, 04/18/2018 - 12:55
+Expires	Never

@@ -8,34 +8,23 @@
     tools:context=".SignUp"
     android:id="@+id/relativeLayout">
 
-    <Button
-        android:id="@+id/btnFbSignUp2"
-        android:layout_width="117dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:layout_marginStart="64dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/facebook"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
         android:id="@+id/imgSignUpLogo"
         android:layout_width="193dp"
         android:layout_height="81dp"
         android:layout_marginTop="40dp"
         android:contentDescription="@string/taara_string_splash_screen_logo"
-        app:srcCompat="@drawable/transparent_white"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/transparent_white" />
 
     <EditText
         android:id="@+id/editFirstNameSignUp"
         android:layout_width="182dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="135dp"
+        android:layout_marginTop="152dp"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/first_name"
@@ -43,8 +32,8 @@
         android:textColor="@android:color/background_light"
         android:textColorHighlight="@android:color/background_light"
         android:textColorHint="@android:color/background_light"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editSecondNameSignUp"
@@ -65,21 +54,22 @@
         android:id="@+id/editPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="191dp"
+        android:layout_marginTop="220dp"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/phone"
         android:inputType="phone"
         android:textColorHint="@android:color/background_light"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editEmailSignUp"
         android:layout_width="318dp"
         android:layout_height="51dp"
-        android:layout_marginTop="248dp"
+        android:layout_marginTop="284dp"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/email"
@@ -121,17 +111,6 @@
         app:layout_constraintTop_toBottomOf="@+id/editPasswordSignUp"
         app:layout_constraintVertical_bias="0.139"
          />
-
-    <Button
-        android:id="@+id/btnGoogleSignUp"
-        android:layout_width="117dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="51dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/google"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toTopOf="@+id/btnFbSignUp2"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/btnLogInInstad"
